@@ -61,7 +61,7 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 | Render Map | H | 10hrs| 8hrs | 8hrs |
-| Create Bathrooms DB | H | 12hrs| 0hrs | 0hrs |
+| Create Bathrooms DB | H | 12hrs| 4hrs | 4hrs |
 | Render Markers | H | 5hrs| 2hrs | 2hrs |
 | Render responsive List View | H | 10hrs| 0hrs | 0hrs |
 
@@ -70,7 +70,7 @@ Helper functions should be generic enought that they can be reused in other appl
 
 | Function | Description |
 | --- | :---: |  
-| Capitalize | This will capitalize the first letter in a string |
+| .map | maping through data to create an array|
 
 ## Additional Libraries
  Use this section to list all supporting libraries and their role in the project.
@@ -83,6 +83,7 @@ Use this section to include a brief code snippet of functionality that you are p
 
 ## Change Log
  Use this section to document what changes were made and the reasoning behind those changes.  
+* after getting frustrated with firebase, I set up a rails server, will go back and try to use firebase, but was concerned about timing.
 
 ## Issues and Resolutions
  Use this section to list of all major issues encountered and their resolution.
