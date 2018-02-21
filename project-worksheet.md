@@ -30,10 +30,14 @@ Use this section to describe your final project and perhaps any links to relevan
 
 Include links to the images of your wireframes.
 
+![](https://i.imgur.com/YUcYGjH.jpg)
+
 ## Priority Matrix
 
 Include a link to your full the `Time\Priority` Matix.  
 
+
+![](https://i.imgur.com/8u3xSHn.jpg)
 ## MVP
 
 Include a bulleted list of the features that will be part of your MVP
