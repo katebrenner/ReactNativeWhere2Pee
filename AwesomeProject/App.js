@@ -7,8 +7,7 @@ import MapClass from './Map';
 
 
 export default class App extends React.Component {
-  constructor () {
-    super()
+
 render() {
   return(
     <MapClass />

@@ -6,8 +6,8 @@ import axios from 'axios';
 
 
 export default class MapClass extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
     this.state = {
       region: {
           latitude: 40.78,
