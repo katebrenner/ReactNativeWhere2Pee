@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image, ScrollView, Button, StatusBar} from 'rea
 // import { MapView, Marker, Callout }  from 'expo';
 import axios from 'axios';
 import MapClass from './Map';
+import ListView from './ListView';
 
 
 export default class App extends React.Component {
@@ -21,10 +22,16 @@ export default class App extends React.Component {
         mapView: true
     }
     this.onRegionChange = this.onRegionChange.bind(this)
+    this.changeView = this.changeView.bind(this)
   }
   onRegionChange(region) {
     this.setState({ region });
     console.log(region)
+  }
+  changeView() {
+    this.setState({
+      mapView: !this.state.mapView
+    })
   }
   componentDidMount(){
     console.log('mounted')
@@ -45,19 +52,30 @@ export default class App extends React.Component {
         console.log(err)
       })
   }
-  //on componentDidMount, set the state to the array of locations for marker
-  //start it as blanck array
 
 render() {
-  return(
-    this.state.loading ?
-    <Text>Loading </Text> :
-    <View style={styles.container} >
-    <MapClass style={styles.map} marker={this.state.marker} region={this.state.region} onRegionChange={this.onRegionChange}/>
-    </View>
-  )
-}
-}
+  if (this.state.loading) {
+    return(
+      <Text>Loading </Text>  )}
+      else if (!this.state.loading && this.state.mapView) {
+        return(
+         <View style={styles.container} >
+         <Text style={{position: 'absolute', left: '25%', top: 50, zIndex: 6, }}> <Image source={require('./ASSETS/toilet_emoji_left.png')} style={{ width: 20, height: 20 }} />
+         WHERE 2 PEE NYC<Image source={require('./ASSETS/toilet_emoji_right.png')} style={{ width: 20, height: 20}} />
+         </Text>
+         <Text style={{position: 'absolute', left: '40%', top: 70, zIndex: 5, borderColor: 'black', borderWidth: 0.5, borderRadius: 5}} onPress={this.changeView}> List View </Text>
+         <MapClass style={styles.map} marker={this.state.marker} region={this.state.region} onRegionChange={this.onRegionChange}/>
+         </View>
+       )
+     }else {
+       return(
+           <ScrollView>
+         <ListView marker={this.state.marker} changeView={this.changeView}/>
+           </ScrollView>
+       )
+     }
+   }
+ }
 
 
 const styles = StyleSheet.create({
@@ -67,6 +85,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    zIndex: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

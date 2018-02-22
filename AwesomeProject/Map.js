@@ -27,7 +27,7 @@ export default class MapClass extends React.Component {
             key= {marker.id}
             onPress={e => console.log('onpress', e.nativeEvent)}
           >
-          <Image source={{uri:'https://cdn.shopify.com/s/files/1/1061/1924/products/Poop_Emoji_7b204f05-eec6-4496-91b1-351acc03d2c7_large.png?v=1480481059'}} style={{ width: 40, height: 40 }} />
+          <Image source={require('./ASSETS/Poop_Emoji.png')} style={{ width: 40, height: 40 }} />
           <MapView.Callout tooltip= {false} style= {{width: 120,  borderRadius: 10 }}>
           <Text style={{fontWeight: 'bold'}}> Name: </Text>
           <Text>{marker.name}</Text>
@@ -45,9 +45,7 @@ export default class MapClass extends React.Component {
 
 
         ))}
-        <Text>WHERE 2 PEE NYC</Text>
 
-<Button style={{position: 'absolute', left: 20, top: 100}} title="List View" onPress={()=> alert('test')}> </Button>
             </MapView>
 
     );
@@ -57,7 +55,7 @@ export default class MapClass extends React.Component {
 const styles = StyleSheet.create({
   map: {
     position: 'absolute',
-    top: 0,
+    top: 100,
     left: 0,
     right: 0,
     bottom: 0,
