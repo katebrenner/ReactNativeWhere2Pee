@@ -7,10 +7,54 @@ import MapClass from './Map';
 
 
 export default class App extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      region: {
+          latitude: 40.78,
+          longitude: -73.97,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        },
+        marker: [],
+        loading: true,
+        mapView: true
+    }
+    this.onRegionChange = this.onRegionChange.bind(this)
+  }
+  onRegionChange(region) {
+    this.setState({ region });
+    console.log(region)
+  }
+  componentDidMount(){
+    console.log('mounted')
+  axios({
+    method: 'GET',
+      //school
+ url: 'http://173.3.1.207:3000/api/bathrooms'
+//home
+   // url: 'http://192.168.0.6:3000/api/bathrooms'
+  })
+    .then( (response) => {
+      this.setState ({
+        marker: response.data,
+        loading: false
+    })
+  })
+      .catch(function(err){
+        console.log(err)
+      })
+  }
+  //on componentDidMount, set the state to the array of locations for marker
+  //start it as blanck array
 
 render() {
   return(
-    <MapClass />
+    this.state.loading ?
+    <Text>Loading </Text> :
+    <View style={styles.container} >
+    <MapClass style={styles.map} marker={this.state.marker} region={this.state.region} onRegionChange={this.onRegionChange}/>
+    </View>
   )
 }
 }

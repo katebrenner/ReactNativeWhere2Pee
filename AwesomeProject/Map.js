@@ -8,56 +8,19 @@ import axios from 'axios';
 export default class MapClass extends React.Component {
   constructor () {
     super()
-    this.state = {
-      region: {
-          latitude: 40.78,
-          longitude: -73.97,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        },
-        marker: [],
-        loading: true
-    }
-    this.onRegionChange = this.onRegionChange.bind(this)
-  }
-  onRegionChange(region) {
-    this.setState({ region });
-    console.log(region)
-  }
-  componentDidMount(){
-    console.log('mounted')
-  axios({
-    method: 'GET',
-      //school
-//  url: 'http://173.3.1.207:3000/api/bathrooms'
-//home
-   url: 'http://192.168.0.6:3000/api/bathrooms'
-  })
-    .then( (response) => {
-      this.setState ({
-        marker: response.data,
-        loading: false
-    })
-  })
-      .catch(function(err){
-        console.log(err)
-      })
-  }
+}
   //on componentDidMount, set the state to the array of locations for marker
   //start it as blanck array
   render() {
     console.log('inside render')
     return (
-      this.state.contentLoaded ?
-      <Text>Loading</Text>:
-
         <MapView
         style={styles.map}
-        initialRegion={this.state.region}
-        onRegionChange={this.onRegionChange}
+        initialRegion={this.props.region}
+        onRegionChange={this.props.onRegionChange}
       >
 
-        {this.state.marker.map(marker => (
+        {this.props.marker.map(marker => (
           <MapView.Marker
             coordinate={marker}
             title={marker.address}
@@ -82,8 +45,9 @@ export default class MapClass extends React.Component {
 
 
         ))}
+        <Text>WHERE 2 PEE NYC</Text>
 
-<Text style={{position: 'absolute', left: 20, top: 100}}> HI </Text>
+<Button style={{position: 'absolute', left: 20, top: 100}} title="List View" onPress={()=> alert('test')}> </Button>
             </MapView>
 
     );
@@ -91,15 +55,6 @@ export default class MapClass extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
   map: {
     position: 'absolute',
     top: 0,
