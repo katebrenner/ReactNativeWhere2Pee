@@ -17,8 +17,7 @@ export default class MapClass extends React.Component {
         <MapView
         style={styles.map}
         initialRegion={this.props.region}
-        onRegionChange={this.props.onRegionChange}
-      >
+        onRegionChange={this.props.onRegionChange}>
 
         {this.props.marker.map(marker => (
           <MapView.Marker

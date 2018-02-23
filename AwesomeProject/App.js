@@ -12,8 +12,8 @@ export default class App extends React.Component {
     super()
     this.state = {
       region: {
-          latitude: 40.78,
-          longitude: -73.97,
+          latitude: 40.75,
+          longitude: -73.98,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         },
@@ -38,9 +38,9 @@ export default class App extends React.Component {
   axios({
     method: 'GET',
       //school
- url: 'http://173.3.1.207:3000/api/bathrooms'
+ // url: 'http://173.3.1.207:3000/api/bathrooms'
 //home
-   // url: 'http://192.168.0.6:3000/api/bathrooms'
+   url: 'http://192.168.0.6:3000/api/bathrooms'
   })
     .then( (response) => {
       this.setState ({
@@ -51,27 +51,64 @@ export default class App extends React.Component {
       .catch(function(err){
         console.log(err)
       })
+      // navigator.geolocation.getCurrentPosition(
+      // position => {
+      //   this.setState({
+      //     region: {
+      //       latitude: position.coords.latitude,
+      //       longitude: position.coords.longitude,
+      //       latitudeDelta: LATITUDE_DELTA,
+      //       longitudeDelta: LONGITUDE_DELTA
+      //     }
+      //   })
+      // }
+      // )
+      navigator.geolocation.getCurrentPosition(
+       position => {
+         this.setState({
+           region: {
+             latitude: position.coords.latitude,
+             longitude: position.coords.longitude,
+             latitudeDelta: 0.0922,
+             longitudeDelta: 0.0421,
+           }
+         });
+       },
+     (error) => console.log(error.message),
+     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+     );
+     this.watchID = navigator.geolocation.watchPosition(
+       position => {
+         this.setState({
+           region: {
+             latitude: position.coords.latitude,
+             longitude: position.coords.longitude,
+             latitudeDelta: 0.0922,
+             longitudeDelta: 0.0421,
+           }
+         });
+       }
+     );
   }
-
 render() {
   if (this.state.loading) {
     return(
-      <Text>Loading </Text>  )}
+      <Text style={{fontSize: 100}}> Loading </Text>  )}
       else if (!this.state.loading && this.state.mapView) {
         return(
          <View style={styles.container} >
-         <Text style={{position: 'absolute', left: '25%', top: 50, zIndex: 6, }}> <Image source={require('./ASSETS/toilet_emoji_left.png')} style={{ width: 20, height: 20 }} />
-         WHERE 2 PEE NYC<Image source={require('./ASSETS/toilet_emoji_right.png')} style={{ width: 20, height: 20}} />
+         <Text style={{fontFamily: 'Avenir', position: 'absolute', top: 30, zIndex: 6, fontSize: 30}}> <Image source={require('./ASSETS/toilet_emoji_left.png')} style={{ width: 30, height: 30 }} />
+         WHERE 2 PEE NYC<Image source={require('./ASSETS/toilet_emoji_right.png')} style={{ width: 30, height: 30}} />
          </Text>
-         <Text style={{position: 'absolute', left: '40%', top: 70, zIndex: 5, borderColor: 'black', borderWidth: 0.5, borderRadius: 5}} onPress={this.changeView}> List View </Text>
+         <Text style={{position: 'absolute', top: 70, zIndex: 5, borderColor: 'black', borderWidth: 0.5, borderRadius: 5}} onPress={this.changeView}> List View </Text>
          <MapClass style={styles.map} marker={this.state.marker} region={this.state.region} onRegionChange={this.onRegionChange}/>
          </View>
        )
      }else {
        return(
-           <ScrollView>
+         <ScrollView>
          <ListView marker={this.state.marker} changeView={this.changeView}/>
-           </ScrollView>
+         </ScrollView>
        )
      }
    }
@@ -80,6 +117,7 @@ render() {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#9bbff4',
     position: 'absolute',
     top: 0,
     left: 0,
