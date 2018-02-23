@@ -6,7 +6,6 @@ import axios from 'axios';
 import MapClass from './Map';
 import ListView from './ListView';
 
-
 export default class App extends React.Component {
   constructor () {
     super()
@@ -19,27 +18,52 @@ export default class App extends React.Component {
         },
         marker: [],
         loading: true,
-        mapView: true
+        mapView: true,
+        viewOne: []
     }
     this.onRegionChange = this.onRegionChange.bind(this)
-    this.changeView = this.changeView.bind(this)
+    this.viewOne = this.viewOne.bind(this)
+    this.back = this.back.bind(this)
   }
   onRegionChange(region) {
     this.setState({ region });
     console.log(region)
   }
-  changeView() {
-    this.setState({
-      mapView: !this.state.mapView
-    })
+  viewOne(id){
+    axios({
+      method: 'GET',
+        //school
+    // url: `http://173.3.1.207:3000/api/bathrooms/${id}`
+  //home
+     url: `http://192.168.0.6:3000/api/bathrooms/${id}`
+   }).then((response) => {
+     console.log(response.data);
+     this.setState({
+       viewOne: response.data,
+       mapView: false
+     })
+   })
+     .catch(function(err){
+       console.log(err)
+     })
+
   }
+  back() {
+    this.setState({
+      mapView: true,
+      viewOne:false
+    })
+
+  }
+
   componentDidMount(){
     console.log('mounted')
   axios({
     method: 'GET',
       //school
- // url: 'http://173.3.1.207:3000/api/bathrooms'
-//home
+       // url: 'http://173.3.1.207:3000/api/bathrooms'
+
+  //home
    url: 'http://192.168.0.6:3000/api/bathrooms'
   })
     .then( (response) => {
@@ -47,49 +71,38 @@ export default class App extends React.Component {
         marker: response.data,
         loading: false
     })
-  })
-      .catch(function(err){
+  }).catch(function(err){
         console.log(err)
       })
-      // navigator.geolocation.getCurrentPosition(
-      // position => {
-      //   this.setState({
-      //     region: {
-      //       latitude: position.coords.latitude,
-      //       longitude: position.coords.longitude,
-      //       latitudeDelta: LATITUDE_DELTA,
-      //       longitudeDelta: LONGITUDE_DELTA
-      //     }
-      //   })
-      // }
-      // )
-      navigator.geolocation.getCurrentPosition(
-       position => {
-         this.setState({
-           region: {
-             latitude: position.coords.latitude,
-             longitude: position.coords.longitude,
-             latitudeDelta: 0.0922,
-             longitudeDelta: 0.0421,
-           }
-         });
-       },
-     (error) => console.log(error.message),
-     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-     );
-     this.watchID = navigator.geolocation.watchPosition(
-       position => {
-         this.setState({
-           region: {
-             latitude: position.coords.latitude,
-             longitude: position.coords.longitude,
-             latitudeDelta: 0.0922,
-             longitudeDelta: 0.0421,
-           }
-         });
-       }
-     );
-  }
+    }
+
+  //     navigator.geolocation.getCurrentPosition(
+  //      position => {
+  //        this.setState({
+  //          region: {
+  //            latitude: position.coords.latitude,
+  //            longitude: position.coords.longitude,
+  //            latitudeDelta: 0.0922,
+  //            longitudeDelta: 0.0421,
+  //          }
+  //        });
+  //      },
+  //    (error) => console.log(error.message),
+  //    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+  //    );
+  //    this.watchID = navigator.geolocation.watchPosition(
+  //      position => {
+  //        this.setState({
+  //          region: {
+  //            latitude: position.coords.latitude,
+  //            longitude: position.coords.longitude,
+  //            latitudeDelta: 0.0922,
+  //            longitudeDelta: 0.0421,
+  //          }
+  //        });
+  //      }
+  //    );
+  // }
 render() {
   if (this.state.loading) {
     return(
@@ -101,13 +114,13 @@ render() {
          WHERE 2 PEE NYC<Image source={require('./ASSETS/toilet_emoji_right.png')} style={{ width: 30, height: 30}} />
          </Text>
          <Text style={{position: 'absolute', top: 70, zIndex: 5, borderColor: 'black', borderWidth: 0.5, borderRadius: 5}} onPress={this.changeView}> List View </Text>
-         <MapClass style={styles.map} marker={this.state.marker} region={this.state.region} onRegionChange={this.onRegionChange}/>
+         <MapClass style={styles.map} marker={this.state.marker} region={this.state.region} onRegionChange={this.onRegionChange} viewOne={this.viewOne} />
          </View>
        )
      }else {
        return(
          <ScrollView>
-         <ListView marker={this.state.marker} changeView={this.changeView}/>
+         <ListView info={this.state.viewOne} />
          </ScrollView>
        )
      }

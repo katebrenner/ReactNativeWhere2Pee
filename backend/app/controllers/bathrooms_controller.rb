@@ -1,6 +1,8 @@
 class BathroomsController < ActionController::API
   def index
-    @bathrooms = Bathroom.order(:name)
-    render json: @bathrooms
+    render json: Bathroom.order(:name)
+  end
+  def show
+    render json: Bathroom.find(params[:id])
   end
 end

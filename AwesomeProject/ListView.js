@@ -10,22 +10,22 @@ class ListView extends React.Component {
   }
   render() {
     return (
-      this.props.marker.map(marker => (
-        <View key={marker.id} style= {{borderColor: 'black', borderWidth: 0.5}}>
+
+
         <View style= {styles.view}>
-        <Text style={styles.header} > {marker.name} </Text>
-        <Text style={{fontSize: 20, fontWeight: 'bold'}}> {marker.address} </Text>
+        <Text style={styles.header} > {this.props.info.name} </Text>
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}> {this.props.info.address} </Text>
         <Text style={styles.reviews}>"Cleanest bathroom in NYC! -Kate B."</Text>
         <Text style={{fontSize: 15, fontWeight: 'bold'}}>Rating: <Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} /><Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} /><Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} /><Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} /> <Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} />{"\n"}</Text>
         <Text style={styles.reviews}>"walk in with a purpose and they dont question you -Kate B."</Text>
         <Text style={{fontSize: 15, fontWeight: 'bold'}}>Rating: <Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} /><Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} />{"\n"}</Text>
         <Text style={styles.reviews}>"This bathroom is a little gross, but they have hand sanitizer so just bath in that after and you'll be fine -Kristin D"</Text>
         <Text style={{fontSize: 15, fontWeight: 'bold'}}>Rating: <Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} /><Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} />{"\n"}</Text>
-        <Button onPress={this.props.changeView} title='Back to Map'/>
+        <Button onPress={() => alert('hi')} title='back'></Button>
         </View>
-        </View>
-      )
-    )
+
+
+
   )
 }
 }
