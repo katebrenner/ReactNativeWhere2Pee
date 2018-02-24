@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Button, Modal, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
 import axios from 'axios';
 import MapClass from './Map';
-import ListView from './ListView';
+import ModalView from './Modal';
 
 export default class MyComponent extends Component {
   constructor() {
@@ -73,7 +73,7 @@ export default class MyComponent extends Component {
           >
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
-                            <ListView info={this.state.viewOne} closeModal={this.closeModal} />
+                <ModalView info={this.state.viewOne} closeModal={this.closeModal} />
               </View>
             </View>
           </Modal>

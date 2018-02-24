@@ -27,16 +27,10 @@ export default class MapClass extends React.Component {
           <Image source={require('./ASSETS/Poop_Emoji.png')} style={{ width: 40, height: 40 }} />
           <MapView.Callout tooltip= {false} style= {{width: 120,  borderRadius: 10 }}>
           <Text style={{fontWeight: 'bold'}}> Name: </Text>
-          <Text onPress={() => this.props.openModal(marker.id)}>{marker.name}</Text>
-          <Text> Address: {marker.address}</Text>
-          <Text style={{fontWeight: 'bold'}}> Hours: </Text>
-          <Text>M:{marker.hoursMon}</Text>
-          <Text>T:{marker.HoursTues}</Text>
-          <Text>W:{marker.hoursWed}</Text>
-          <Text>Th:{marker.hoursThurs}</Text>
-          <Text>F:{marker.hoursFri}</Text>
-          <Text>S:{marker.hoursSat}</Text>
-          <Text>S:{marker.hoursSun}</Text>
+          <Text >{marker.name}</Text>
+          <Text style={{fontWeight: 'bold'}}> Address: </Text>
+          <Text> {marker.address}</Text>
+          <Button onPress={() => this.props.openModal(marker.id)} title="More Info"></Button>
           </MapView.Callout >
           </MapView.Marker>
 
