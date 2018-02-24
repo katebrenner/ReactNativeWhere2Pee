@@ -10,8 +10,6 @@ class ListView extends React.Component {
   }
   render() {
     return (
-
-
         <View style= {styles.view}>
         <Text style={styles.header} > {this.props.info.name} </Text>
         <Text style={{fontSize: 20, fontWeight: 'bold'}}> {this.props.info.address} </Text>
@@ -21,14 +19,11 @@ class ListView extends React.Component {
         <Text style={{fontSize: 15, fontWeight: 'bold'}}>Rating: <Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} /><Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} />{"\n"}</Text>
         <Text style={styles.reviews}>"This bathroom is a little gross, but they have hand sanitizer so just bath in that after and you'll be fine -Kristin D"</Text>
         <Text style={{fontSize: 15, fontWeight: 'bold'}}>Rating: <Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} /><Image source={require('./ASSETS/Star_Emoji.png')} style={styles.image} />{"\n"}</Text>
-        <Button onPress={() => alert('hi')} title='back'></Button>
+        <Button onPress={() => this.props.back()} title='back'></Button>
         </View>
-
-
-
-  )
-}
-}
+      )
+    }
+  }
 
 const styles = StyleSheet.create({
   image:{
