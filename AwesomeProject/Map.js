@@ -9,8 +9,6 @@ export default class MapClass extends React.Component {
   constructor () {
     super()
 }
-  //on componentDidMount, set the state to the array of locations for marker
-  //start it as blanck array
   render() {
     console.log('inside render')
     return (
@@ -29,7 +27,7 @@ export default class MapClass extends React.Component {
           <Image source={require('./ASSETS/Poop_Emoji.png')} style={{ width: 40, height: 40 }} />
           <MapView.Callout tooltip= {false} style= {{width: 120,  borderRadius: 10 }}>
           <Text style={{fontWeight: 'bold'}}> Name: </Text>
-          <Text>{marker.name}</Text>
+          <Text onPress={() => this.props.openModal(marker.id)}>{marker.name}</Text>
           <Text> Address: {marker.address}</Text>
           <Text style={{fontWeight: 'bold'}}> Hours: </Text>
           <Text>M:{marker.hoursMon}</Text>
@@ -41,7 +39,6 @@ export default class MapClass extends React.Component {
           <Text>S:{marker.hoursSun}</Text>
           </MapView.Callout >
           </MapView.Marker>
-
 
         ))}
 
@@ -60,3 +57,6 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 });
+
+
+        // <Text onPress={renderOne(marker.id)}>{marker.name}</Text>
