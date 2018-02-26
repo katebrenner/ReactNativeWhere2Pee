@@ -8,7 +8,7 @@ import axios from 'axios';
 export default class MapClass extends React.Component {
   constructor () {
     super()
-}
+  }
   render() {
     console.log('inside render')
     return (
@@ -24,6 +24,7 @@ export default class MapClass extends React.Component {
               title={marker.address}
               key= {marker.id}
               ref={marker.id}
+              style={styles.marker}
               // onPress={e => console.log('onpress', e.nativeEvent)}
               >
               <Image source={require('./ASSETS/Poop_Emoji.png')} style={{ width: 40, height: 40 }} />
