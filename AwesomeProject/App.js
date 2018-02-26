@@ -41,7 +41,6 @@ export default class MyComponent extends Component {
          })
   })
 }
-
   closeModal() {
     this.setState({modalVisible:false});
   }
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
   },
   innerContainer: {
     alignItems: 'center',

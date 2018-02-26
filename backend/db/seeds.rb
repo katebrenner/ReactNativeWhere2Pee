@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+#
 Bathroom.create( [
   {latitude: 40.7525703, longitude: -73.9776273, address: "89 E 42nd St, New York, NY", name: "Grand Central Terminal", hoursMon: "5:30am-2am", HoursTues: "5:30am-2am", hoursWed: "5:30am-2am", hoursThurs: "5:30am-2am", hoursFri: "5:30am-2am", hoursSat: "5:30am-2am", hoursSun: "5:30am-2am"},
   {latitude: 40.750782, longitude: -73.988959, address: "151 W 34th St, New York, NY", name: "Macy's Herald Square", hoursMon: "10am-10pm", HoursTues: "10am-10pm", hoursWed: "10am-10pm", hoursThurs: "10am-10pm", hoursFri: "10am-10pm", hoursSat: "10am-10pm", hoursSun: "10am-9pm"},
@@ -34,3 +34,5 @@ Bathroom.create( [
 
 ]
 );
+
+Review.create(reviews: "Just walk in like you are a shopper and then ask where the bathroom is", rating: 4, location_id: 37)

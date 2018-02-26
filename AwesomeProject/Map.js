@@ -28,11 +28,7 @@ export default class MapClass extends React.Component {
               // onPress={e => console.log('onpress', e.nativeEvent)}
               >
               <Image source={require('./ASSETS/Poop_Emoji.png')} style={{ width: 40, height: 40 }} />
-              <MapView.Callout style={{zIndex: 4}}tooltip= {false} style= {{width: 120,  borderRadius: 10 }} onPress={ (index) => {
-    let calloutRef = `callout-${index}`
-    let item = this.refs[calloutRef]
-    this.setState({ selectedCalloutIndex: index })}
-  }>
+              <MapView.Callout style={styles.callout}tooltip= {false} >
                 <Text style={{fontWeight: 'bold'}}> Name: </Text>
                 <Text >{marker.name}</Text>
                 <Text style={{fontWeight: 'bold'}}> Address: </Text>
@@ -56,4 +52,11 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
+  callout: {
+    zIndex: 4,
+    width: 150,
+    borderRadius: 10,
+    display: 'flex',
+    alignItems: 'center'
+  }
 });
