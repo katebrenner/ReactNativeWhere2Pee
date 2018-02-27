@@ -2,14 +2,11 @@ import React from 'react';
 import { Header, StyleSheet, Text, View, Image, ScrollView, Button, StatusBar} from 'react-native';
 import { Rating } from 'react-native-elements';
 
-class ModalView extends React.Component {
+//Modal component renders unique information about the specified bathroom when the modal is open
+export default class ModalView extends React.Component {
   constructor(props){
     super(props)
   }
-  componentDidMount(){
-    console.log( 'list props' + JSON.stringify(this.props))
-  }
-
   render() {
     return (
         <ScrollView>
@@ -40,6 +37,7 @@ class ModalView extends React.Component {
          </View>
       )
       )}
+      {/*additional ratings that were added while there are still few reviews*/}
         <Text style={styles.reviews}>"walk in with a purpose and they dont question you -Kate B."</Text>
         <Rating
           type="star"
@@ -87,6 +85,7 @@ class ModalView extends React.Component {
     }
   }
 
+//stylesheet for this component
 const styles = StyleSheet.create({
   image:{
   width: 20,
@@ -110,6 +109,3 @@ reviews: {
     alignItems: 'center',
   }
 });
-
-
-export default ModalView;

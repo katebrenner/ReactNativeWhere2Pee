@@ -5,21 +5,22 @@ import axios from 'axios';
 import email from 'react-native-email';
 import { Icon } from 'react-native-elements';
 
-
 export default class MapClass extends React.Component {
   constructor () {
     super()
   }
+  //handle email method opens up user's email on their device. cc and bcc not currently being utilized
   handleEmail = () => {
       const to = ['kbrenner101@gmail.com'] // string or array of email addresses
       email(to, {
           // Optional additional arguments
           // cc: ['bazzy@moo.com', 'doooo@daaa.com'], // string or array of email addresses
           // bcc: 'mee@mee.com', // string or array of email addresses
-          subject: 'WHERE 2 PEE Suggestion',
-          body: 'Some body right here'
+          subject: 'WHERE 2 PEE Feeedback',
+          body: 'Thank you for your email!  Please provide your feedback in quotes, and how many stars (out of 5) that you would rank this restroom.  Please also indicate if you would prefer your comment to be anonymous.  Your feedback is greatly appreciated. '
       }).catch(console.error)
   }
+  //render method
   render() {
     console.log('inside render')
     return (
@@ -62,6 +63,7 @@ export default class MapClass extends React.Component {
   }
 }
 
+//stylesheet for this component
 const styles = StyleSheet.create({
   map: {
     position: 'absolute',

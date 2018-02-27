@@ -9,14 +9,14 @@ const {
   width: SCREEN_WIDTH,
   height: SCREEN_HEIGHT,
 } = Dimensions.get('window');
-
 export function changesize() {
-return  SCREEN_WIDTH / 12
+  return  SCREEN_WIDTH / 12
 }
-
+//main component
 export default class MyComponent extends Component {
   constructor() {
     super()
+//sets initial state
     this.state = {
       modalVisible: false,
       region: {
@@ -29,11 +29,13 @@ export default class MyComponent extends Component {
       viewAll: [],
       viewOne: null
     }
+    //binding all functions that modify state
     this.openModal= this.openModal.bind(this)
     this.closeModal= this.closeModal.bind(this)
     this.onRegionChange= this.onRegionChange.bind(this)
   }
-
+  //openModal method makes a get request which returns a response unique to the id of the bathroom passed as a parameter
+  //also opens modal by updating modalVisible state
   openModal(id) {
         axios({
           method: 'GET',
@@ -49,6 +51,7 @@ export default class MyComponent extends Component {
          })
   })
 }
+// closeModal method
   closeModal() {
     this.setState({modalVisible:false});
   }
@@ -75,10 +78,10 @@ export default class MyComponent extends Component {
         console.log(err)
       })
     }
-
   render() {
-
     return (
+      //return method first checks to see if the content is still loading information from the axios call,
+      //if not still loading, the map will be rendered
       this.state.loading ? <Text style={{fontSize: 50, textAlign: 'center'}}>Loading</Text> :
         <View style={styles.container}>
           <Modal
@@ -101,10 +104,7 @@ export default class MyComponent extends Component {
   }
 }
 
-
-
-
-
+//stylesheet for this component
 const styles = StyleSheet.create({
   container: {
     flex: 1,

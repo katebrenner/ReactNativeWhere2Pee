@@ -196,6 +196,7 @@ export default class MyComponent extends Component {
 * after getting frustrated with firebase, I set up a rails server, will go back and try to use firebase, but was concerned about timing.
 * spent hours trying to import maps form google maps, after hours, finally realized I could import from expo, and have the map be the apple map, not google maps
 * running on expo instead of running on xcode.  I found expo to be much more straight forward and less confusing
+* instead of list view, I opted for a modal that renders additional information specifically about that location, instead of all locations.  This is a better experience for the user as it does not take the user out of the flow.
 
 ## Issues and Resolutions
 Use this section to list of all major issues encountered and their resolution.
