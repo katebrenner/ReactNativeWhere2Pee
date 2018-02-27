@@ -94,14 +94,8 @@ export default class MyComponent extends Component {
 }
 
 
-const rightButtonConfig = {
-  title: 'Next',
-  handler: () => alert('hello!'),
-};
 
-const titleConfig = {
-  title: 'Hello, world',
-};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
