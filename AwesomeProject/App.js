@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View, Button, Modal, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
+import { Text, View, Button, Modal, StyleSheet, Image, ScrollView, StatusBar,  Dimensions, Platform, PixelRatio } from 'react-native';
 import axios from 'axios';
 import MapClass from './Map';
 import ModalView from './Modal';
 import NavigationBar from 'react-native-navbar';
 
+// function to adjust font size to screen to be used on header
+const {
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+
+export function changesize() {
+return  SCREEN_WIDTH / 12
+}
 
 export default class MyComponent extends Component {
   constructor() {
@@ -69,7 +78,7 @@ export default class MyComponent extends Component {
     }
 
   render() {
-    console.log(this.state.region)
+
     return (
       this.state.loading ? <Text style={{fontSize: 50, textAlign: 'center'}}>Loading</Text> :
         <View style={styles.container}>
@@ -84,7 +93,7 @@ export default class MyComponent extends Component {
               </View>
             </View>
           </Modal>
-          <Text style={{fontFamily: 'Avenir',fontWeight: 'bold', position: 'absolute', top: 30, zIndex: 6, fontSize: 30}}> <Image source={require('./ASSETS/toilet_emoji_left.png')} style={{ width: 30, height: 30 }} />
+          <Text style={{fontFamily: 'Avenir',fontWeight: 'bold', position: 'absolute', top: 30, zIndex: 6, fontSize: changesize()}}> <Image source={require('./ASSETS/toilet_emoji_left.png')} style={{ width: 30, height: 30 }} />
           WHERE 2 PEE NYC<Image source={require('./ASSETS/toilet_emoji_right.png')} style={{ width: 30, height: 30}} />
           </Text>
           <MapClass openModal={this.openModal} style={styles.map} marker={this.state.viewAll} region={this.state.region} onRegionChange={this.onRegionChange} viewOne={this.viewOne} onMarkerPress={this.onMarkerPress} onRegionChange={this.onRegionChange}/>
@@ -92,6 +101,7 @@ export default class MyComponent extends Component {
     );
   }
 }
+
 
 
 
