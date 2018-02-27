@@ -70,7 +70,7 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Render Markers | H | 5hrs| 5hrs | 5hrs |
 | Figuring out proper state | H | 5hrs| 8hrs | 8hrs |
 | Components | H | 10hrs| 12hrs | 12hrs |
-| Render responsive List View | H | 10hrs| 8hrs | 8hrs |
+| Render responsive List View | H | 10hrs| 10hrs | 10hrs |
 
 ## Helper Functions
 Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
@@ -81,12 +81,115 @@ Helper functions should be generic enought that they can be reused in other appl
 
 ## Additional Libraries
  Use this section to list all supporting libraries and their role in the project.
- * react-native-maps
- * react-native
+ * react is a javascript library
+ * react-native was built off of react and uses the same design as react, but is used for mobile development
+ * react-native-maps is a react native module used to render the map and markers
+ * react-native-elements is a front end library that was used for the email button and rating stars
+ * axios is used to make HTTP request and render JSON data
 
 ## Code Snippet
 
 Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  
+
+The below code is the main component of the app.  The first part defines a function that is called later in the component to alter the font size of the header based on the size of the screen.  After testing the app on a smaller screen, the text began to wrap around the screen, which was not the intended effect.  The main component is right below it, and displays all the stat and all the functions that alter state and are passed down as props.
+
+
+```const {
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+
+export function changesize() {
+return  SCREEN_WIDTH / 12
+}
+
+export default class MyComponent extends Component {
+  constructor() {
+    super()
+    this.state = {
+      modalVisible: false,
+      region: {
+        latitude: 40.75,
+        longitude: -73.98,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+      loading: true,
+      viewAll: [],
+      viewOne: null
+    }
+    this.openModal= this.openModal.bind(this)
+    this.closeModal= this.closeModal.bind(this)
+    this.onRegionChange= this.onRegionChange.bind(this)
+  }
+
+  openModal(id) {
+        axios({
+          method: 'GET',
+            //school
+        url: `http://173.3.1.207:3000/api/bathrooms/${id}`
+      //home
+         // url: `http://192.168.0.6:3000/api/bathrooms/${id}`
+       }).then((response) => {
+         console.log(response.data);
+         this.setState({
+           viewOne: response.data,
+           modalVisible:true
+         })
+  })
+}
+  closeModal() {
+    this.setState({modalVisible:false});
+  }
+  onRegionChange(region) {
+  this.setState({ region });
+  console.log(region)
+}
+  componentDidMount(){
+    console.log('mounted')
+  axios({
+    method: 'GET',
+      //school
+       url: 'http://173.3.1.207:3000/api/bathrooms'
+  //home
+   // url: 'http://192.168.0.6:3000/api/bathrooms'
+  })
+    .then( (response) => {
+      this.setState ({
+        viewAll: response.data,
+        veiewOne: false,
+        loading: false
+    })
+  }).catch(function(err){
+        console.log(err)
+      })
+    }
+
+  render() {
+
+    return (
+      this.state.loading ? <Text style={{fontSize: 50, textAlign: 'center'}}>Loading</Text> :
+        <View style={styles.container}>
+          <Modal
+              transparent= {true}
+              visible={this.state.modalVisible}
+              animationType={'slide'}
+              onRequestClose={() => this.closeModal()}>
+            <View style={styles.modalContainer}>
+              <View style={styles.innerContainer}>
+                <ModalView info={this.state.viewOne} closeModal={this.closeModal} />
+              </View>
+            </View>
+          </Modal>
+          <Text style={{fontFamily: 'Avenir',fontWeight: 'bold', position: 'absolute', top: 30, zIndex: 6, fontSize: changesize()}}> <Image source={require('./ASSETS/toilet_emoji_left.png')} style={{ width: 30, height: 30 }} />
+          WHERE 2 PEE NYC<Image source={require('./ASSETS/toilet_emoji_right.png')} style={{ width: 30, height: 30}} />
+          </Text>
+          <MapClass openModal={this.openModal} style={styles.map} marker={this.state.viewAll} region={this.state.region} onRegionChange={this.onRegionChange} viewOne={this.viewOne} onMarkerPress={this.onMarkerPress} onRegionChange={this.onRegionChange}/>
+        </View>
+    );
+  }
+}
+```
 
 ## Change Log
  Use this section to document what changes were made and the reasoning behind those changes.  
@@ -101,6 +204,7 @@ Lots of new errors with react native and expo
 **Undefined is not an object** This error occured when trying to access certain elements of state that were objects. When receiving undefined, it means that the desired object is not being accessed properly.
 **Can't find variable** CSS properties such as 'center' or 'black' must be in quotes
 **Could not connect to development server** this error occurs when react server isn't running (need to be running both rails backend server and react server)
+**Rails Error** When linking a second table, and linking it to the bathrooms table, the column had to be called "bathroom_id", and it had acciddentally been called "locations_id"
 
 
 #### SAMPLE.....

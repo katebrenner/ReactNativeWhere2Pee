@@ -3,7 +3,6 @@ import { Text, View, Button, Modal, StyleSheet, Image, ScrollView, StatusBar,  D
 import axios from 'axios';
 import MapClass from './Map';
 import ModalView from './Modal';
-import NavigationBar from 'react-native-navbar';
 
 // function to adjust font size to screen to be used on header
 const {
