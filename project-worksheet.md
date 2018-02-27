@@ -58,16 +58,19 @@ Include a bulleted list of the features that will be part of POST MVP
 
 ## Functional Components
 
-Based on the initial logic defined in the previous game phases section try and breakdown the logic further into functional components, and by that we mean functions.  Does your logic indicate that code could be encapsulated for the purpose of reusablility.  Once a function has been defined it can then be incorporated into a class as a method.
+Based on the initial logic defined in the previous game phases section try and breakdown the logic further into functional components, and by that we mean functions.  Does your logic indicate that code could be encapsulated for the purpose of reusability.  Once a function has been defined it can then be incorporated into a class as a method.
 
-Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted.
+Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evaluate game possibilities based on time needed and the actual time you have before game must be submitted.
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 | Render Map | H | 10hrs| 8hrs | 8hrs |
+| Set Up Backend | H | 10hrs| 10hrs | 10hrs |
 | Create Bathrooms DB | H | 12hrs| 4hrs | 4hrs |
-| Render Markers | H | 5hrs| 2hrs | 2hrs |
-| Render responsive List View | H | 10hrs| 0hrs | 0hrs |
+| Render Markers | H | 5hrs| 5hrs | 5hrs |
+| Figuring out proper state | H | 5hrs| 8hrs | 8hrs |
+| Components | H | 10hrs| 12hrs | 12hrs |
+| Render responsive List View | H | 10hrs| 8hrs | 8hrs |
 
 ## Helper Functions
 Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
@@ -88,12 +91,17 @@ Use this section to include a brief code snippet of functionality that you are p
 ## Change Log
  Use this section to document what changes were made and the reasoning behind those changes.  
 * after getting frustrated with firebase, I set up a rails server, will go back and try to use firebase, but was concerned about timing.
+* spent hours trying to import maps form google maps, after hours, finally realized I could import from expo, and have the map be the apple map, not google maps
+* running on expo instead of running on xcode.  I found expo to be much more straight forward and less confusing
 
 ## Issues and Resolutions
- Use this section to list of all major issues encountered and their resolution.
+Use this section to list of all major issues encountered and their resolution.
+Lots of new errors with react native and expo
+**Element type not valid** This error occurs when the component is not recognized.  Component needs to be imported either from another file, or from react-native.  All react native componenets need to be imported
+**Undefined is not an object** This error occured when trying to access certain elements of state that were objects. When receiving undefined, it means that the desired object is not being accessed properly.
+**Can't find variable** CSS properties such as 'center' or 'black' must be in quotes
+**Could not connect to development server** this error occurs when react server isn't running (need to be running both rails backend server and react server)
 
- * spent hours trying to import maps form google maps, after hours, finally realized I could import from expo, and have the map be the apple map, not google maps
- * running on expo instead of running on xcode.  I found expo to be much more straight forward and less confusing
 
 #### SAMPLE.....
 **ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier                                

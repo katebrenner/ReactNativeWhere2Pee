@@ -30,9 +30,9 @@ export default class MyComponent extends Component {
         axios({
           method: 'GET',
             //school
-        // url: `http://173.3.1.207:3000/api/bathrooms/${id}`
+        url: `http://173.3.1.207:3000/api/bathrooms/${id}`
       //home
-         url: `http://192.168.0.6:3000/api/bathrooms/${id}`
+         // url: `http://192.168.0.6:3000/api/bathrooms/${id}`
        }).then((response) => {
          console.log(response.data);
          this.setState({
@@ -41,7 +41,6 @@ export default class MyComponent extends Component {
          })
   })
 }
-
   closeModal() {
     this.setState({modalVisible:false});
   }
@@ -54,10 +53,9 @@ export default class MyComponent extends Component {
   axios({
     method: 'GET',
       //school
-       // url: 'http://173.3.1.207:3000/api/bathrooms'
-
+       url: 'http://173.3.1.207:3000/api/bathrooms'
   //home
-   url: 'http://192.168.0.6:3000/api/bathrooms'
+   // url: 'http://192.168.0.6:3000/api/bathrooms'
   })
     .then( (response) => {
       this.setState ({
@@ -73,8 +71,10 @@ export default class MyComponent extends Component {
   render() {
     console.log(this.state.region)
     return (
+      this.state.loading ? <Text style={{fontSize: 50, textAlign: 'center'}}>Loading</Text> :
         <View style={styles.container}>
           <Modal
+              transparent= {true}
               visible={this.state.modalVisible}
               animationType={'slide'}
               onRequestClose={() => this.closeModal()}>
@@ -84,7 +84,7 @@ export default class MyComponent extends Component {
               </View>
             </View>
           </Modal>
-          <Text style={{fontFamily: 'Avenir', position: 'absolute', top: 30, zIndex: 6, fontSize: 30}}> <Image source={require('./ASSETS/toilet_emoji_left.png')} style={{ width: 30, height: 30 }} />
+          <Text style={{fontFamily: 'Avenir',fontWeight: 'bold', position: 'absolute', top: 30, zIndex: 6, fontSize: 30}}> <Image source={require('./ASSETS/toilet_emoji_left.png')} style={{ width: 30, height: 30 }} />
           WHERE 2 PEE NYC<Image source={require('./ASSETS/toilet_emoji_right.png')} style={{ width: 30, height: 30}} />
           </Text>
           <MapClass openModal={this.openModal} style={styles.map} marker={this.state.viewAll} region={this.state.region} onRegionChange={this.onRegionChange} viewOne={this.viewOne} onMarkerPress={this.onMarkerPress} onRegionChange={this.onRegionChange}/>
@@ -94,25 +94,20 @@ export default class MyComponent extends Component {
 }
 
 
-const rightButtonConfig = {
-  title: 'Next',
-  handler: () => alert('hello!'),
-};
 
-const titleConfig = {
-  title: 'Hello, world',
-};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // backgroundColor: 'white',
-    // alignItems: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    alignItems: 'center'
   },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'transparent',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
   innerContainer: {
     alignItems: 'center',
