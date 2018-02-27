@@ -3,11 +3,23 @@ import { StyleSheet, Text, View, Image, ScrollView, Button, StatusBar} from 'rea
 import { MapView, Marker, Callout }  from 'expo';
 import { StackNavigator, DrawerNavigator, SafeAreaView } from 'react-navigation';
 import axios from 'axios';
+import email from 'react-native-email';
+import { Icon } from 'react-native-elements';
 
 
 export default class MapClass extends React.Component {
   constructor () {
     super()
+  }
+  handleEmail = () => {
+      const to = ['kbrenner101@gmail.com'] // string or array of email addresses
+      email(to, {
+          // Optional additional arguments
+          // cc: ['bazzy@moo.com', 'doooo@daaa.com'], // string or array of email addresses
+          bcc: 'mee@mee.com', // string or array of email addresses
+          subject: 'WHERE 2 PEE Suggestion',
+          body: 'Some body right here'
+      }).catch(console.error)
   }
   render() {
     console.log('inside render')
@@ -39,6 +51,13 @@ export default class MapClass extends React.Component {
           )
         )
       }
+       <Icon
+  raised
+  name='mail-outline'
+  type='material-design'
+  color='black'
+  containerStyle={{position: 'absolute', left: '75%', top: '85%'}}
+  onPress={this.handleEmail}  />
       </MapView>
     );
   }
