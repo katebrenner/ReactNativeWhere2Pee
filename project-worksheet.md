@@ -201,11 +201,11 @@ export default class MyComponent extends Component {
 ## Issues and Resolutions
 Use this section to list of all major issues encountered and their resolution.
 Lots of new errors with react native and expo
-**Element type not valid** This error occurs when the component is not recognized.  Component needs to be imported either from another file, or from react-native.  All react native componenets need to be imported
-**Undefined is not an object** This error occured when trying to access certain elements of state that were objects. When receiving undefined, it means that the desired object is not being accessed properly.
-**Can't find variable** CSS properties such as 'center' or 'black' must be in quotes
-**Could not connect to development server** this error occurs when react server isn't running (need to be running both rails backend server and react server)
-**Rails Error** When linking a second table, and linking it to the bathrooms table, the column had to be called "bathroom_id", and it had acciddentally been called "locations_id"
+**Element type not valid**: This error occurs when the component is not recognized.  Component needs to be imported either from another file, or from react-native.  All react native componenets need to be imported
+**Undefined is not an object**: This error occured when trying to access certain elements of state that were objects. When receiving undefined, it means that the desired object is not being accessed properly.
+**Can't find variable**: CSS properties such as 'center' or 'black' must be in quotes
+**Could not connect to development server**: this error occurs when react server isn't running (need to be running both rails backend server and react server)
+**Rails Error**: When linking a second table, and linking it to the bathrooms table, the column had to be called "bathroom_id", and it had acciddentally been called "locations_id"
 
 
 #### SAMPLE.....
