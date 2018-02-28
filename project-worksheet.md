@@ -72,27 +72,6 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Components | H | 10hrs| 12hrs | 12hrs |
 | Render responsive List View | H | 10hrs| 10hrs | 10hrs |
 
-## Helper Functions
-Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
-
-| Function | Description |
-| --- | :---: |  
-| this.props.marker.map(marker => (
-  <MapView.Marker
-    coordinate={marker}
-    title={marker.address}
-    key= {marker.id}
-    ref={marker.id}
-    style={styles.marker}>
-  ...
-  </MapView.Marker>| looping over map data to render  |  
-| const {
-  width: SCREEN_WIDTH,
-  height: SCREEN_HEIGHT,
-} = Dimensions.get('window');
-export function changesize() {
-  return  SCREEN_WIDTH / 12
-} | changes the font size based on the iphone screen width|
 
 ## Additional Libraries
  Use this section to list all supporting libraries and their role in the project.
