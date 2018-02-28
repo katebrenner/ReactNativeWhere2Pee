@@ -77,7 +77,22 @@ Helper functions should be generic enought that they can be reused in other appl
 
 | Function | Description |
 | --- | :---: |  
-| .map | maping through data to create an array|
+| this.props.marker.map(marker => (
+  <MapView.Marker
+    coordinate={marker}
+    title={marker.address}
+    key= {marker.id}
+    ref={marker.id}
+    style={styles.marker}>
+  ...
+  </MapView.Marker>| looping over map data to render  |  
+| const {
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+export function changesize() {
+  return  SCREEN_WIDTH / 12
+} | changes the font size based on the iphone screen width|
 
 ## Additional Libraries
  Use this section to list all supporting libraries and their role in the project.
